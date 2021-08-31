@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myintsetalgebra</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension Int: SetAlgebra {
+    public typealias Element = Int
+
+    public func contains(_ member: Element) -&gt; Bool {
+        self &gt;&gt; member &amp; 1 == 1
+    }
+
+    public func intersection(_ other: Self) -&gt; Self {
+        self &amp; other
+    }
+
+    public func union(_ other: Self) -&gt; Self {
+        self | other
+    }
+
+    public func symmetricDifference(_ other: Self) -&gt; Self {
+        self ^ other
+    }
+
+    public mutating func formIntersection(_ other: Self) {
+        self &amp;= other
+    }
+
+    public mutating func formUnion(_ other: Self) {
+        self |= other
+    }
+
+    public mutating func formSymmetricDifference(_ other: Self) {
+        self ^= other
+    }
+
+    public mutating func insert(_ newMember: Element) -&gt; (inserted: Bool, memberAfterInsert: Element) {
+        if contains(newMember) {
+            return (false, newMember)
+        } else {
+            self |= 1 &lt;&lt; newMember
+            return (true, newMember)
+        }
+    }
+
+    public mutating func remove(_ member: Element) -&gt; Element? {
+        if contains(member) {
+            self &amp;= ~(1 &lt;&lt; member)
+            return member
+        } else {
+            return nil
+        }
+    }
+
+    public mutating func update(with newMember: Element) -&gt; Element? {
+        if contains(newMember) {
+            return newMember
+        } else {
+            self |= 1 &lt;&lt; newMember
+            return nil
+        }
+    }
+}
+
+func testIntSetAlgebra() {
+    func testContains() {
+        assert(!Int([1, 2, 4, 5]).contains(0))
+        assert(Int([1, 2, 4, 5]).contains(1))
+        assert(Int([1, 2, 4, 5]).contains(2))
+        assert(!Int([1, 2, 4, 5]).contains(3))
+        assert(Int([1, 2, 4, 5]).contains(4))
+        assert(Int([1, 2, 4, 5]).contains(5))
+        assert(!Int([1, 2, 4, 5]).contains(6))
+    }
+
+    func testIntersection() {
+        assert(([1, 2, 3, 4] as Int).intersection([2, 3, 4, 5]) == [2, 3, 4])
+    }
+
+    func testUnion() {
+        assert(([1, 2, 3, 4] as Int).union([2, 3, 4, 5]) == [1, 2, 3, 4, 5])
+    }
+
+    func testSymmetricDifference() {
+        assert(([1, 2, 3, 4] as Int).symmetricDifference([2, 3, 4, 5]) == [1, 5])
+    }
+
+    func testInsert() {
+        var s: Int = []
+        assert(s.insert(0) == (true, 0))
+        assert(s.insert(1) == (true, 1))
+        assert(s.insert(0) == (false, 0))
+        assert(s.insert(1) == (false, 1))
+        assert(s.insert(2) == (true, 2))
+        assert(s == [0, 1, 2])
+    }
+
+    func testRemove() {
+        var s: Int = []
+        assert(s.remove(0) == nil)
+        assert(s.insert(0) == (true, 0))
+        assert(s.insert(1) == (true, 1))
+        assert(s.remove(0) == 0)
+        assert(s.insert(0) == (true, 0))
+        assert(s.insert(0) == (false, 0))
+        assert(s.remove(1) == 1)
+        assert(s == [0])
+    }
+
+    func testUpdate() {
+        var s: Int = []
+        assert(s.update(with: 0) == nil)
+        assert(s.update(with: 1) == nil)
+        assert(s.update(with: 0) == 0)
+        assert(s.update(with: 2) == nil)
+        assert(s.update(with: 2) == 2)
+        assert(s.update(with: 1) == 1)
+    }
+
+    testContains()
+    testIntersection()
+    testUnion()
+    testSymmetricDifference()
+    testInsert()
+    testRemove()
+    testUpdate()
+}
+
+testIntSetAlgebra()
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>5D8FE258-1877-4A41-8BF3-22A5E1A6C397</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Int Set Algebra</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mynonnegativeremainder</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>infix operator %%: MultiplicationPrecedence
+
+func %% (lhs: Int, rhs: Int) -&gt; Int {
+    let n = lhs % rhs
+    return n &gt;= 0 ? n : n + rhs
+}
+
+func testNonnegativeRemainder() {
+    assert((-9) %% 3 == 0)
+    assert((-8) %% 3 == 1)
+    assert((-7) %% 3 == 2)
+    assert((-6) %% 3 == 0)
+    assert((-5) %% 3 == 1)
+    assert((-4) %% 3 == 2)
+    assert((-3) %% 3 == 0)
+    assert((-2) %% 3 == 1)
+    assert((-1) %% 3 == 2)
+    assert(0 %% 3 == 0)
+    assert(1 %% 3 == 1)
+    assert(2 %% 3 == 2)
+    assert(3 %% 3 == 0)
+    assert(4 %% 3 == 1)
+    assert(5 %% 3 == 2)
+    assert(6 %% 3 == 0)
+    assert(7 %% 3 == 1)
+    assert(8 %% 3 == 2)
+    assert(9 %% 3 == 0)
+}
+
+testNonnegativeRemainder()
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>6BB37CD1-98C9-4E25-B445-EF18D4418B20</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Non Negative Remainder</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

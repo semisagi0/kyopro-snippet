@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mycounter</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct Counter&lt;Key: Hashable&gt; {
+    private var count: [Key: Int] = [:]
+
+    init() {
+
+    }
+
+    init&lt;S&gt;(_ sequence: S) where S: Sequence, S.Element == Key {
+        for element in sequence {
+            self[element] += 1
+        }
+    }
+
+    var keys: Dictionary&lt;Key, Int&gt;.Keys {
+        count.keys
+    }
+
+    subscript(_ key: Key) -&gt; Int {
+        get {
+            count[key, default: 0]
+        }
+        set {
+            count[key, default: 0] = newValue
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7BE293FF-C6CA-435A-BD52-EE8BDCDF5214</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Counter</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

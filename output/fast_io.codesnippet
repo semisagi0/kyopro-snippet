@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myfastio</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct Printer {
+    private let bufferSize = 4096 * 4
+    private var data: [UInt8]
+    private var index: Int = 0
+    private var intBuffer: [UInt8]
+
+    init() {
+        data = .init(repeating: 0, count: bufferSize)
+        intBuffer = .init(repeating: 0, count: 30)
+    }
+
+    mutating func put(_ x: UInt8) {
+        if index == bufferSize {
+            FileHandle.standardOutput.write(Data(data))
+            index = 0
+        }
+        data[index] = x
+        index += 1
+    }
+
+    mutating func flush() {
+        FileHandle.standardOutput.write(Data(data[0 ..&lt; index]))
+        index = 0
+    }
+
+    mutating func print(_ x: Character) {
+        put(x.asciiValue!)
+    }
+
+    mutating func print(_ x: Int) {
+        if x &lt; 0 {
+            put(("-" as Character).asciiValue!)
+            self.print(-x)
+            return
+        }
+        if x == 0 {
+            put(("0" as Character).asciiValue!)
+            return
+        }
+        var k = 30
+        var x = x
+        while x &gt; 0 {
+            k -= 1
+            intBuffer[k] = UInt8(x % 10)
+            x /= 10
+        }
+        for x in intBuffer[k...] {
+            put(("0" as Character).asciiValue! + x)
+        }
+    }
+
+    mutating func printSpace() {
+        put((" " as Character).asciiValue!)
+    }
+
+    mutating func println() {
+        put(("\n" as Character).asciiValue!)
+    }
+}
+
+struct Scanner {
+    private let bufferSize = 4096 * 4
+    private var data = [UInt8]()
+    private var index: Int = 0
+
+    mutating func peek() -&gt; UInt8 {
+        if index == data.count {
+            data = Array(FileHandle.standardInput.readData(ofLength: bufferSize))
+            index = 0
+        }
+        return data[index]
+    }
+
+    mutating func skip() {
+        index += 1
+    }
+
+    mutating func read() -&gt; UInt8 {
+        defer { skip() }
+        return peek()
+    }
+
+    private mutating func isSpace() -&gt; Bool {
+        let x = peek()
+        return x == (" " as Character).asciiValue! || x == ("\n" as Character).asciiValue!
+    }
+
+    private mutating func isDigit() -&gt; Bool {
+        let x = peek()
+        return ("0" as Character).asciiValue! &lt;= x &amp;&amp; x &lt;= ("9" as Character).asciiValue!
+    }
+
+    mutating func nextBytes() -&gt; [UInt8] {
+        var result = [UInt8]()
+        while isSpace() {
+            skip()
+        }
+        while !isSpace() {
+            result.append(read())
+        }
+        return result
+    }
+
+    mutating func next() -&gt; String {
+        String(bytes: nextBytes(), encoding: .utf8)!
+    }
+
+    mutating func nextInt() -&gt; Int {
+        var result = 0
+        while isSpace() {
+            skip()
+        }
+        var negative: Bool = false
+        if peek() == ("-" as Character).asciiValue! {
+            negative = true
+            skip()
+        }
+        while isDigit() {
+            result = result * 10 + Int(read() - ("0" as Character).asciiValue!)
+        }
+        if negative {
+            result = -result
+        }
+        return result
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>94B69940-0B59-4B3C-AE17-BFBD9465B88F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Fast IO</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

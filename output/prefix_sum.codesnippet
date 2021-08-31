@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myprefixsum</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension Collection where Element: AdditiveArithmetic {
+    /// 累積和
+    ///
+    /// ```
+    /// assert([].prefixSum() == [0])
+    /// assert([1, 2, 3, 4, 5].prefixSum() == [0, 1, 3, 6, 10, 15])
+    /// ```
+    func prefixSum() -&gt; [Element] {
+        var result: [Element] = [.zero]
+        for element in self {
+            result.append(result.last! + element)
+        }
+        return result
+    }
+}
+
+func testPrefixSum() {
+    assert([].prefixSum() == [0])
+    assert([1, 2, 3, 4, 5].prefixSum() == [0, 1, 3, 6, 10, 15])
+}
+
+testPrefixSum()
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>81A99886-FB95-41FD-939D-D98739F3E0CE</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Prefix Sum</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

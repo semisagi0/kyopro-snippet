@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myarithmeticoverflowoperator</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>infix operator &lt;+&gt;: AdditionPrecedence
+infix operator &lt;*&gt;: MultiplicationPrecedence
+infix operator &lt;+&gt;=: AssignmentPrecedence
+infix operator &lt;*&gt;=: AssignmentPrecedence
+
+func &lt;+&gt; (lhs: Int, rhs: Int) -&gt; Int {
+    let (result, overflow) = lhs.addingReportingOverflow(rhs)
+    if overflow {
+        return Int.max
+    }
+    return result
+}
+
+func &lt;*&gt; (lhs: Int, rhs: Int) -&gt; Int {
+    let (result, overflow) = lhs.multipliedReportingOverflow(by: rhs)
+    if overflow {
+        return Int.max
+    }
+    return result
+}
+
+func &lt;+&gt;= (lhs: inout Int, rhs: Int) {
+    lhs = lhs &lt;+&gt; rhs
+}
+
+func &lt;*&gt;= (lhs: inout Int, rhs: Int) {
+    lhs = lhs &lt;*&gt; rhs
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>80EFCF6E-C4C0-4E46-AFB0-1D1C3115E4B8</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Arithmetic Overflow Operator</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

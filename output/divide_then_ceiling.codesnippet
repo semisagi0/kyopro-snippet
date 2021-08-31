@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myceil</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>infix operator /+: MultiplicationPrecedence // 切り上げ
+
+/// ```
+/// assert(5 /+ 2 == 3)
+/// assert(6 /+ 2 == 3)
+/// assert(-3 /+ 2 == -1)
+/// assert(-4 /+ 2 == -2)
+/// ```
+func /+ (lhs: Int, rhs: Int) -&gt; Int {
+    lhs &gt;= 0 ? (lhs + rhs - 1) / rhs : lhs / rhs
+}
+
+func testCeilingDivision() {
+    assert(0 /+ 3 == 0)
+    assert(5 /+ 2 == 3)
+    assert(6 /+ 2 == 3)
+    assert(-3 /+ 2 == -1)
+    assert(-4 /+ 2 == -2)
+}
+
+testCeilingDivision()
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>93C8553F-3CC4-4341-82A9-4C5AD49912EE</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Divide Then Ceiling</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

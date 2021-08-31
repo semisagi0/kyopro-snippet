@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myorassignment</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>infix operator ||=: AssignmentPrecedence
+
+/**
+ - Remark:
+ 短絡評価されないので注意。
+ たとえば`x`が`true`の場合、`x = x || f()`では`f()`は評価されないが、`x ||= f()`では`f()`は評価される。
+ */
+func ||= (lhs: inout Bool, rhs: Bool) {
+    lhs = lhs || rhs
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>06AEB47E-A1BC-4D05-A885-4DAEFACCC5F0</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Or Assignment Operator</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

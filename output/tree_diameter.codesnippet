@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mytreediameter</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func treeDiameter(_ G: [[Int]]) -&gt; Int {
+    var distance = [Int](repeating: 0, count: G.count)
+    func dfs(_ current: Int, _ parent: Int?) {
+        for next in G[current] where next != parent {
+            distance[next] = distance[current] + 1
+            dfs(next, current)
+        }
+    }
+    dfs(0, nil)
+    let u = distance.firstIndex(of: distance.max()!)!
+    distance[u] = 0
+    dfs(u, nil)
+    return distance.max()!
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>9A4911F6-F0FF-4F49-9661-46AC6D9BCCE6</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Tree Diameter</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

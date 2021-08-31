@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myzi</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct Zi: Equatable {
+    let x, y: Int
+
+    static var zero = Zi(x: 0, y: 0)
+
+    var norm: Int {
+        x * x + y * y
+    }
+
+    var conjugate: Zi {
+        Zi(x: x, y: -y)
+    }
+
+    static prefix func - (this: Zi) -&gt; Zi {
+        Zi(x: -this.x, y: -this.y)
+    }
+
+    static func + (lhs: Zi, rhs: Zi) -&gt; Zi {
+        Zi(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    }
+
+    static func - (lhs: Zi, rhs: Zi) -&gt; Zi {
+        Zi(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
+
+    static func * (lhs: Zi, rhs: Zi) -&gt; Zi {
+        Zi(x: lhs.x * rhs.x - lhs.y * rhs.y, y: lhs.x * rhs.y + lhs.y * rhs.x)
+    }
+
+    static func / (lhs: Zi, rhs: Zi) -&gt; Zi {
+        let z = lhs * rhs.conjugate
+        let n = rhs.norm
+        return Zi(x: z.x /+- n, y: z.y /+- n)
+    }
+
+    static func % (lhs: Zi, rhs: Zi) -&gt; Zi {
+        lhs - (lhs / rhs) * rhs
+    }
+
+    func gcd(_ other: Zi) -&gt; Zi {
+        if other == .zero {
+            return self
+        } else {
+            return other.gcd(self % other)
+        }
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>DBF79B6E-6432-4C70-BCA5-3F1E0A92FD4C</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Gauss Integer</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

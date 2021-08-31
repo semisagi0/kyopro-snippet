@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myznmatrix</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct ZnMatrix {
+    private var a: Array2D&lt;Zn&gt;
+
+    init(_ n: Int) {
+        self.a = Array2D&lt;Zn&gt;(repeating: 0, n, n)
+    }
+
+    var size: Int {
+        a.n1
+    }
+
+    static func E(_ n: Int) -&gt; ZnMatrix {
+        var result = ZnMatrix(n)
+        for i in 0 ..&lt; n {
+            result[i, i] = 1
+        }
+        return result
+    }
+
+    subscript(i: Int, j: Int) -&gt; Zn {
+        get {
+            a[i, j]
+        }
+        set {
+            a[i, j] = newValue
+        }
+    }
+
+    static func * (lhs: ZnMatrix, rhs: ZnMatrix) -&gt; ZnMatrix {
+        let n = lhs.size
+        var result = ZnMatrix(n)
+        for i in 0 ..&lt; n {
+            for j in 0 ..&lt; n {
+                for k in 0 ..&lt; n {
+                    result[i, j] += lhs[i, k] * rhs[k, j]
+                }
+            }
+        }
+        return result
+    }
+
+    static func ** (lhs: ZnMatrix, rhs: Int) -&gt; ZnMatrix {
+        if rhs == 0 {
+            return .E(lhs.size)
+        } else if rhs % 2 == 1 {
+            return lhs * lhs ** (rhs - 1)
+        } else {
+            return (lhs * lhs) ** (rhs / 2)
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>445A6A21-A1C5-43CA-93AD-FA15906C6A23</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Zn Matrix</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

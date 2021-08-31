@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myrealbinarysearch</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func binarySearch(yes: Double, no: Double, iteration: Int, predicate: (Double) -&gt; Bool) -&gt; Double {
+    assert(predicate(yes))
+    assert(!predicate(no))
+    func f(yes: Double, no: Double, iteration: Int) -&gt; Double {
+        if iteration &lt;= 0 {
+            return yes
+        }
+        let x = (yes + no) / 2
+        if predicate(x) {
+            return f(yes: x, no: no, iteration: iteration - 1)
+        } else {
+            return f(yes: yes, no: x, iteration: iteration - 1)
+        }
+    }
+    return f(yes: yes, no: no, iteration: iteration)
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>3BD053C8-9FE4-471E-ABD3-09EE45859DFF</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Binary Search over Floating Point Number</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

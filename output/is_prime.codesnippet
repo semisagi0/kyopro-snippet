@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myisprime</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension Int {
+    /// ```
+    /// assert(!1.isPrime())
+    /// assert(2.isPrime())
+    /// assert(3.isPrime())
+    /// assert(!4.isPrime())
+    /// assert(5.isPrime())
+    /// assert(!6.isPrime())
+    /// assert(7.isPrime())
+    /// assert(!8.isPrime())
+    /// assert(!9.isPrime())
+    /// assert(!10.isPrime())
+    /// ```
+    func isPrime() -&gt; Bool {
+        guard self &gt;= 2 else { return false }
+        var i = 2
+        while i * i &lt;= self {
+            if self % i == 0 {
+                return false
+            }
+            i += 1
+        }
+        return true
+    }
+}
+
+func testIsPrime() {
+    assert(!1.isPrime())
+    assert(2.isPrime())
+    assert(3.isPrime())
+    assert(!4.isPrime())
+    assert(5.isPrime())
+    assert(!6.isPrime())
+    assert(7.isPrime())
+    assert(!8.isPrime())
+    assert(!9.isPrime())
+    assert(!10.isPrime())
+}
+
+testIsPrime()
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>FE3B62E6-27E4-4F3E-956E-D6D558A47BA6</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Is Prime</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

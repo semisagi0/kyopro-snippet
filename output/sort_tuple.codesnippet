@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mysorttuple</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func sort&lt;A, B&gt;(_ a: [A], _ b: [B], by compare: ((A, B), (A, B)) -&gt; Bool) -&gt; ([A], [B]) where A: Comparable, B: Comparable {
+    let ab = zip(a, b).sorted(by: compare)
+    return (ab.map(\.0), ab.map(\.1))
+}
+
+func sort&lt;A, B, C&gt;(_ a: [A], _ b: [B], _ c: [C], by compare: ((A, B, C), (A, B, C)) -&gt; Bool) -&gt; ([A], [B], [C]) where A: Comparable, B: Comparable, C: Comparable {
+    let abc = zip(a, b, c).sorted(by: compare)
+    return (abc.map(\.0), abc.map(\.1), abc.map(\.2))
+}
+
+func sort&lt;A, B, C, D&gt;(_ a: [A], _ b: [B], _ c: [C], _ d: [D], by compare: ((A, B, C, D), (A, B, C, D)) -&gt; Bool) -&gt; ([A], [B], [C], [D]) where A: Comparable, B: Comparable, C: Comparable, D: Comparable {
+    let abcd = zip(a, b, c, d).sorted(by: compare)
+    return (abcd.map(\.0), abcd.map(\.1), abcd.map(\.2), abcd.map(\.3))
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>EB98696F-F381-46FB-8D36-ABCA089052CA</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Sort Tuple</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

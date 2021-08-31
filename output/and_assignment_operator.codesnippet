@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myandassignment</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>infix operator &amp;&amp;=: AssignmentPrecedence
+
+/**
+ - Remark:
+ 短絡評価されないので注意。
+ たとえば`x`が`false`の場合、`x = x &amp;&amp; f()`では`f()`は評価されないが、`x &amp;&amp;= f()`では`f()`は評価される。
+ */
+func &amp;&amp;= (lhs: inout Bool, rhs: Bool) {
+    lhs = lhs &amp;&amp; rhs
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>0422FC86-FB8E-4A34-B103-3DE2C18F57AE</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>And Assignment Operator</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

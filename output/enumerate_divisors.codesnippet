@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mydivisors</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension Int {
+    /// ```
+    /// assert(12.divisors() == [1, 2, 3, 4, 6, 12])
+    /// ```
+    func divisors() -&gt; [Int] {
+        precondition(self &gt;= 1)
+        var i = 1
+        var result = [Int]()
+        while i * i &lt;= self {
+            if self % i == 0 {
+                result.append(i)
+                if i * i != self {
+                    result.append(self / i)
+                }
+            }
+            i += 1
+        }
+        return result.sorted()
+    }
+}
+
+func testDivisors() {
+    assert(1.divisors() == [1])
+    assert(2.divisors() == [1, 2])
+    assert(3.divisors() == [1, 3])
+    assert(4.divisors() == [1, 2, 4])
+    assert(5.divisors() == [1, 5])
+    assert(6.divisors() == [1, 2, 3, 6])
+    assert(7.divisors() == [1, 7])
+    assert(8.divisors() == [1, 2, 4, 8])
+    assert(9.divisors() == [1, 3, 9])
+    assert(10.divisors() == [1, 2, 5, 10])
+    assert(11.divisors() == [1, 11])
+    assert(12.divisors() == [1, 2, 3, 4, 6, 12])
+    assert(16.divisors() == [1, 2, 4, 8, 16])
+}
+
+testDivisors()
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>2F323FBF-0EFD-42D7-AE53-B6081CA575E5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Enumerate Divisors</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

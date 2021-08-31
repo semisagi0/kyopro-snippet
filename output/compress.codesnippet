@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mycompress</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func rank&lt;Element: Comparable &amp; Hashable&gt;(_ a: [Element]) -&gt; [Element: Int] {
+    var result = [Element: Int]()
+    for x in a.sorted() {
+        if !result.keys.contains(x) {
+            result[x] = result.count
+        }
+    }
+    return result
+}
+
+extension Array where Element: Comparable &amp; Hashable {
+    func compressed() -&gt; [Int] {
+        let r = rank(self)
+        return map { r[$0]! }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>89A383EA-0078-4C9F-9FDD-45C55ACD2A11</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Compress</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

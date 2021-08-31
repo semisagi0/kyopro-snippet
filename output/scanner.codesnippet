@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myscanner</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct Scanner {
+    private var elements = [String]()
+    private var index = 0
+
+    mutating func peek() -&gt; String {
+        while elements.count == index {
+            elements = readLine()!.split(separator: " ").map(String.init)
+            index = 0
+        }
+        return elements[index]
+    }
+
+    mutating func next() -&gt; String {
+        defer { index += 1 }
+        return peek()
+    }
+
+    mutating func nextInt() -&gt; Int {
+        return Int(next())!
+    }
+
+    mutating func nextInts(_ n: Int) -&gt; [Int] {
+        return (0 ..&lt; n).map { _ in nextInt() }
+    }
+
+    mutating func nextDouble() -&gt; Double {
+        return Double(next())!
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>53636DB5-4AD4-41B7-B984-33C99FE86C0F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Scanner</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

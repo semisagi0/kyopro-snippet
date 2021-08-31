@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mypower</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>precedencegroup PowerPrecedence {
+    higherThan: MultiplicationPrecedence
+    associativity: right
+}
+
+infix operator **: PowerPrecedence
+
+func ** (lhs: Int, rhs: Int) -&gt; Int {
+    rhs == 0 ? 1 : lhs * lhs ** (rhs - 1)
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>A6CA297B-A3A0-4C90-9708-6C3BD465AA0B</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Power</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

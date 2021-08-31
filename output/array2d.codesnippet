@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myarray2d</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct Array2D&lt;Element&gt; {
+    let n1: Int
+    let n2: Int
+    private var elements: [Element]
+
+    init(repeating: Element, _ n1: Int, _ n2: Int) {
+        self.n1 = n1
+        self.n2 = n2
+        self.elements = [Element](repeating: repeating, count: n1 * n2)
+    }
+
+    subscript(i: Int, j: Int) -&gt; Element {
+        get {
+            elements[i * n2 + j]
+        }
+        set {
+            elements[i * n2 + j] = newValue
+        }
+    }
+
+    func row(_ i: Int) -&gt; [Element] {
+        (0 ..&lt; n2).map { self[i, $0] }
+    }
+
+    func column(_ j: Int) -&gt; [Element] {
+        (0 ..&lt; n1).map { self[$0, j] }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>AE059F8C-58B8-4DDC-8A6B-D3FCC6D41A6D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Array2D</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

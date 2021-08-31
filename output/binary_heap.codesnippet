@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mybinaryheap</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct BinaryHeap&lt;Value&gt; {
+    private var heap: [Value]
+    private var lessThan: (Value, Value) -&gt; Bool
+
+    init(lessThan: @escaping (Value, Value) -&gt; Bool) {
+        self.heap = []
+        self.lessThan = lessThan
+    }
+
+    mutating func insert(_ v: Value) {
+        var k = heap.count
+        heap.append(v)
+        while k &gt; 0 {
+            let p = (k - 1) / 2
+            if lessThan(heap[k], heap[p]) {
+                heap.swapAt(k, p)
+                k = p
+            } else {
+                break
+            }
+        }
+    }
+
+    mutating func extractMin() -&gt; Value? {
+        guard let result = heap.first else { return nil }
+        heap.swapAt(0, heap.endIndex - 1)
+        heap.removeLast()
+        var k = 0
+        while true {
+            var l = k
+            for c in [k * 2 + 1, k * 2 + 2] where c &lt; heap.count &amp;&amp; lessThan(heap[c], heap[l]) {
+                l = c
+            }
+            if k == l {
+                break
+            }
+            heap.swapAt(k, l)
+            k = l
+        }
+        return result
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>EF81883C-B3FB-4A29-9890-7A1230197592</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Binary Heap</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

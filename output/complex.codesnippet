@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mycomplex</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct Complex: ExpressibleByFloatLiteral, AdditiveArithmetic {
+    let x: Double
+    let y: Double
+
+    static var zero: Complex = Complex(0, 0)
+    static var one: Complex = Complex(1, 0)
+
+    var conjugated: Self {
+        Complex(x, -y)
+    }
+
+    var absolute: Double {
+        norm.squareRoot()
+    }
+
+    var norm: Double {
+        x * x + y * y
+    }
+
+    init() {
+        self.x = 0
+        self.y = 0
+    }
+
+    init(floatLiteral value: FloatLiteralType) {
+        self.x = value
+        self.y = 0
+    }
+
+    init(_ x: Double) {
+        self.x = x
+        self.y = 0
+    }
+
+    init(_ x: Double, _ y: Double) {
+        self.x = x
+        self.y = y
+    }
+
+    static prefix func + (value: Self) -&gt; Self {
+        value
+    }
+
+    static prefix func - (value: Self) -&gt; Self {
+        Complex(-value.x, -value.y)
+    }
+
+    static func + (lhs: Self, rhs: Self) -&gt; Self {
+        Complex(lhs.x + rhs.x, lhs.y + rhs.y)
+    }
+
+    static func += (lhs: inout Self, rhs: Self) {
+        lhs = lhs + rhs
+    }
+
+    static func - (lhs: Self, rhs: Self) -&gt; Self {
+        Complex(lhs.x - rhs.x, lhs.y - rhs.y)
+    }
+
+    static func -= (lhs: inout Self, rhs: Self) {
+        lhs = lhs - rhs
+    }
+
+    static func * (lhs: Self, rhs: Self) -&gt; Self {
+        Complex(lhs.x * rhs.x - lhs.y * rhs.y, lhs.x * rhs.y + lhs.y * rhs.x)
+    }
+
+    static func * (lhs: Double, rhs: Self) -&gt; Self {
+        Complex(lhs * rhs.x, lhs * rhs.y)
+    }
+
+    static func * (lhs: Self, rhs: Double) -&gt; Self {
+        Complex(lhs.x * rhs, lhs.y * rhs)
+    }
+
+    static func *= (lhs: inout Self, rhs: Self) {
+        lhs = lhs * rhs
+    }
+
+    static func *= (lhs: inout Self, rhs: Double) {
+        lhs = lhs * rhs
+    }
+
+    static func / (lhs: Self, rhs: Double) -&gt; Self {
+        Complex(lhs.x / rhs, lhs.y / rhs)
+    }
+
+    static func / (lhs: Double, rhs: Self) -&gt; Self {
+        lhs * rhs.conjugated / rhs.absolute
+    }
+
+    static func / (lhs: Self, rhs: Self) -&gt; Self {
+        lhs * rhs.conjugated / rhs.norm
+    }
+
+    static func /= (lhs: inout Self, rhs: Self) {
+        lhs = lhs / rhs
+    }
+
+    static func /= (lhs: inout Self, rhs: Double) {
+        lhs = lhs / rhs
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4FE02894-FA0A-4E55-83A7-C6FD6F1A26E2</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Complex</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

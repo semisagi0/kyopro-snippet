@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mydeque</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct Deque&lt;Element&gt; {
+    private var elements: [Element?]
+    private var l: Int = 0
+    private var r: Int = 0
+
+    var count: Int {
+        r - l
+    }
+
+    var capacity: Int {
+        elements.count
+    }
+
+    var isEmpty: Bool {
+        count == 0
+    }
+
+    init() {
+        self.elements = [Element?](repeating: nil, count: 1)
+    }
+
+    private mutating func reallocate() {
+        guard count == elements.count else { return }
+        var newElements = [Element?](repeating: nil, count: elements.count * 2)
+        for i in l ..&lt; r {
+            newElements[i - l] = elements[index(i)]
+        }
+        elements = newElements
+        l = 0
+        r = elements.count / 2
+    }
+
+    private mutating func index(_ k: Int) -&gt; Int {
+        var k = k % elements.count
+        if k &lt; 0 {
+            k += elements.count
+        }
+        return k
+    }
+
+    private mutating func release(_ k: Int) -&gt; Element {
+        let k = index(k)
+        let result = elements[k]!
+        elements[k] = nil
+        return result
+    }
+
+    mutating func pushFront(_ newElement: Element) {
+        reallocate()
+        l -= 1
+        elements[index(l)] = newElement
+    }
+
+    mutating func pushBack(_ newElement: Element) {
+        reallocate()
+        elements[index(r)] = newElement
+        r += 1
+    }
+
+    mutating func popFront() -&gt; Element? {
+        guard l &lt; r else { return nil }
+        defer { l += 1 }
+        return release(l)
+    }
+
+    mutating func popBack() -&gt; Element? {
+        guard l &lt; r else { return nil }
+        r -= 1
+        return release(r)
+    }
+}       </string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>AE1B6687-9C2A-4F71-B0CE-615429E9C51B</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Deque</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

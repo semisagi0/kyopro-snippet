@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myrmqmax</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct RMQmax {
+    private var nodes: [Int]
+    private var size: Int
+
+    init(_ n: Int) {
+        var m = 1
+        while m &lt; n {
+            m *= 2
+        }
+        size = m
+        nodes = .init(repeating: Int.min, count: m * 2)
+    }
+
+    mutating func update(_ k: Int, _ value: Int) {
+        var k = k + size - 1
+        nodes[k] = value
+        while k &gt; 0 {
+            k = (k - 1) / 2
+            nodes[k] = max(nodes[k * 2 + 1], nodes[k * 2 + 2])
+        }
+    }
+
+    func query(_ a: Int, _ b: Int) -&gt; Int {
+        func f(_ k: Int, _ l: Int, _ r: Int) -&gt; Int {
+            if a &lt;= l &amp;&amp; r &lt;= b {
+                return nodes[k]
+            }
+            if r &lt;= a || b &lt;= l {
+                return Int.min
+            }
+            let vl = f(k * 2 + 1, l, (l + r) / 2)
+            let vr = f(k * 2 + 2, (l + r) / 2, r)
+            return max(vl, vr)
+        }
+        return f(0, 0, size)
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B95E2A06-1CFA-4CE3-B21E-F3C93A6FF676</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>RMQmax</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

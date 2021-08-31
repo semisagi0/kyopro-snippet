@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mylcm</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func lcm(_ a: Int, _ b: Int) -&gt; Int {
+    a / gcd(a, b) * b
+}
+
+func testLCM() {
+    assert(lcm(1, 1) == 1)
+    assert(lcm(1, 5) == 5)
+    assert(lcm(5, 1) == 5)
+    assert(lcm(6, 10) == 30)
+    assert(lcm(4, 12) == 12)
+    assert(lcm(8, 12) == 24)
+}
+
+testLCM()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>A215C496-C121-4FE5-B6F4-65CBEC033954</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>LCM</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myfloor</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>infix operator /-: MultiplicationPrecedence // 切り下げ
+
+/// ```
+/// assert(5 /- 2 == 2)
+/// assert(6 /- 2 == 3)
+/// assert(-3 /- 2 == -2)
+/// assert(-4 /- 2 == -2)
+/// ```
+func /- (lhs: Int, rhs: Int) -&gt; Int {
+    lhs &gt;= 0 ? lhs / rhs : (lhs - rhs + 1) / rhs
+}
+
+func testFloorDivision() {
+    assert(0 /- 3 == 0)
+    assert(5 /- 2 == 2)
+    assert(6 /- 2 == 3)
+    assert(-3 /- 2 == -2)
+    assert(-4 /- 2 == -2)
+}
+
+testFloorDivision()
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B3F77D5E-DB8C-49BC-858B-FE7723279DFE</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Divide Then Floor</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

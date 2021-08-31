@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mysuffixmin</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>extension Array where Element == Int {
+    func suffixMin() -&gt; [Element] {
+        var result = [Int](repeating: Int.max, count: count + 1)
+        for i in (0 ..&lt; count).reversed() {
+            result[i] = Swift.min(self[i], result[i + 1])
+        }
+        return result
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>41EDB1CA-AC9C-4820-B035-63A0E28C7B07</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Suffix Min</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

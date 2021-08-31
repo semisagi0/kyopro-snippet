@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mypermutation</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct PermutationSequence&lt;Element: Comparable&gt;: Sequence, IteratorProtocol {
+    private var elements: [Element]?
+
+    mutating func next() -&gt; [Element]? {
+        guard let elements = elements else { return nil }
+        let results = elements
+        var i = elements.count - 2
+        while i &gt;= 0, elements[i] &gt;= elements[i + 1] {
+            i -= 1
+        }
+        if i == -1 {
+            self.elements = nil
+        } else {
+            var j = elements.count - 1
+            while elements[i] &gt;= elements[j] {
+                j -= 1
+            }
+            self.elements!.swapAt(i, j)
+            self.elements![(i + 1)...].reverse()
+        }
+        return results
+    }
+
+    init&lt;Elements: Sequence&gt;(elements: Elements) where Elements.Element == Element {
+        self.elements = Array(elements).sorted()
+    }
+
+    func makeIterator() -&gt; Iterator {
+        self
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>5FB23689-6C33-4704-B512-072F1DB4CA2E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Permutation</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myxorbases</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct XorBases {
+    var bases: [Int] = []
+
+    mutating func insert(_ x: Int) {
+        var x = x
+        for y in bases {
+            x = min(x, x ^ y)
+        }
+        if x != 0 {
+            bases.append(x)
+        }
+    }
+
+    mutating func contains(_ x: Int) -&gt; Bool {
+        var x = x
+        for y in bases {
+            x = min(x, x ^ y)
+        }
+        return x == 0
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>EEB414F1-0913-4054-AC08-E3BF8BB28388</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Xor Bases</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

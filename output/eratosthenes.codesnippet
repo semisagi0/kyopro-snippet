@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myeratosthenes</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func eratosthenes(through n: Int) -&gt; [Bool] {
+    precondition(n &gt;= 0)
+    if n == 0 {
+        return [false]
+    }
+    if n == 1 {
+        return [false, false]
+    }
+    var table = [Bool](repeating: true, count: n + 1)
+    table[0] = false
+    table[1] = false
+    for i in 2 ... n where table[i] {
+        for j in stride(from: i * 2, through: n, by: i) {
+            table[j] = false
+        }
+    }
+    return table
+}
+
+func testEratosthenes() {
+    assert(eratosthenes(through: 0) == [false])
+    assert(eratosthenes(through: 1) == [false, false])
+    assert(eratosthenes(through: 2) == [false, false, true])
+    assert(eratosthenes(through: 3) == [false, false, true, true])
+    assert(eratosthenes(through: 4) == [false, false, true, true, false])
+    assert(eratosthenes(through: 5) == [false, false, true, true, false, true])
+    assert(
+        eratosthenes(through: 20) == [
+            false, false, true, true, false,
+            true, false, true, false, false,
+            false, true, false, true, false,
+            false, false, true, false, true,
+            false
+        ]
+    )
+}
+
+testEratosthenes()
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>EDC8ACA9-6977-4754-9B81-F8185D2C5EFA</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Eratosthenes</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

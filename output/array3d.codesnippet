@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myarray3d</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct Array3D&lt;Element&gt; {
+    let n1: Int
+    let n2: Int
+    let n3: Int
+    private var elements: [Element]
+    
+    init(repeating: Element, _ n1: Int, _ n2: Int, _ n3: Int) {
+        self.n1 = n1
+        self.n2 = n2
+        self.n3 = n3
+        self.elements = [Element](repeating: repeating, count: n1 * n2 * n3)
+    }
+    
+    subscript(i: Int, j: Int, k: Int) -&gt; Element {
+        get {
+            elements[(i * n2 + j) * n3 + k]
+        }
+        set {
+            elements[(i * n2 + j) * n3 + k] = newValue
+        }
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>8C2C11D8-2653-42BF-BA5D-A2643513B6D5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Array3D</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
