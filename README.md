@@ -16,5 +16,5 @@ Xcode 12で使用している競プロ用のスニペット。
 
 ## 実行方法
 ```
-python3 main.py
+python3 tools/main.py
 ```
