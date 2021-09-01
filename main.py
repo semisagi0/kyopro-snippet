@@ -10,13 +10,12 @@ def normalized_name(name):
     name = name.lower().replace(' ', '_')
     return name
 
-# `~CodeSnippets`は`~/Library/Developer/Xcode/UserData/CodeSnippets`へのシンボリックリンク。
-snippets_directory = pathlib.PosixPath('~/CodeSnippets').expanduser()
+snippets_directory = pathlib.PosixPath('~/Library/Developer/Xcode/UserData/CodeSnippets').expanduser()
 
-output_directory = pathlib.PosixPath('./output')
+output_directory = pathlib.PosixPath('./snippets')
 output_directory.mkdir(exist_ok=True)
 
-output_swift_directory = pathlib.PosixPath('./output_swift')
+output_swift_directory = pathlib.PosixPath('./snippets_swift')
 output_swift_directory.mkdir(exist_ok=True)
 
 for snippet_path in snippets_directory.glob('*.codesnippet'):
