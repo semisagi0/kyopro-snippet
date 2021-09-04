@@ -1,3 +1,4 @@
+// snippet_id: 1a5e73a2-96a8-4b3e-8d8b-05eee049765c
 struct Array3D<Element> {
     let n1: Int
     let n2: Int

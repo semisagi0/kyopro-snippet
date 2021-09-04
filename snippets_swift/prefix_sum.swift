@@ -1,3 +1,4 @@
+// snippet_id: 1acf278d-e34b-4da1-b1d5-bf0a4fec83aa
 extension Collection where Element: AdditiveArithmetic {
     /// 累積和
     ///

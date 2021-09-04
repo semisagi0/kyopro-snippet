@@ -1,3 +1,4 @@
+// snippet_id: 2b93f6b6-6891-4e09-b83b-a4b31ce771c2
 precedencegroup PowerPrecedence {
     higherThan: MultiplicationPrecedence
     associativity: right

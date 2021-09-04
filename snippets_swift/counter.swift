@@ -1,3 +1,4 @@
+// snippet_id: a04cc5b1-b58c-4107-8fae-87d935169ebc
 struct Counter<Key: Hashable> {
     private var count: [Key: Int] = [:]
 

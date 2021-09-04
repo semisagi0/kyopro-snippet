@@ -9,7 +9,8 @@
 		<string>TopLevel</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>func chmax&lt;T: Comparable&gt;(_ x: inout T, _ y: T) {
+	<string>// snippet_id: c829a679-1f44-40c6-9422-bd90be99f81f
+func chmax&lt;T: Comparable&gt;(_ x: inout T, _ y: T) {
     x = max(x, y)
 }</string>
 	<key>IDECodeSnippetIdentifier</key>

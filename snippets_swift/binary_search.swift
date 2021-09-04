@@ -1,3 +1,4 @@
+// snippet_id: bb85b55e-1021-4f72-a271-5707ac405183
 func binarySearch(yes: Int, no: Int, where predicate: (Int) -> Bool) -> Int {
     var yes = yes
     var no = no

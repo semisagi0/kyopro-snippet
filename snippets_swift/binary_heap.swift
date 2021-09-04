@@ -1,3 +1,4 @@
+// snippet_id: 8fa5965d-76d1-4de3-a76c-0b57a325733a
 struct BinaryHeap<Value> {
     private var heap: [Value]
     private var lessThan: (Value, Value) -> Bool
@@ -5,6 +6,14 @@ struct BinaryHeap<Value> {
     init(lessThan: @escaping (Value, Value) -> Bool) {
         self.heap = []
         self.lessThan = lessThan
+    }
+
+    var count: Int {
+        heap.count
+    }
+
+    var isEmpty: Bool {
+        heap.isEmpty
     }
 
     mutating func insert(_ v: Value) {
@@ -19,6 +28,10 @@ struct BinaryHeap<Value> {
                 break
             }
         }
+    }
+
+    func peekMin() -> Value? {
+        heap.first
     }
 
     mutating func extractMin() -> Value? {

@@ -1,3 +1,4 @@
+// snippet_id: a1cd31a0-4f0e-43ad-ba3f-9dd67501df8c
 struct BIT {
     private var elements: [Int]
 

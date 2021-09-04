@@ -1,3 +1,4 @@
+// snippet_id: 26afc4b1-71dd-4b0e-9e8c-5c17fbbb2896
 infix operator %%: MultiplicationPrecedence
 
 func %% (lhs: Int, rhs: Int) -> Int {

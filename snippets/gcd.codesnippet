@@ -9,7 +9,8 @@
 		<string>TopLevel</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>/// `a`と`b`の最大公約数を返す。
+	<string>// snippet_id: 049a10cf-8568-424f-a00d-8cc5a3c16068
+/// `a`と`b`の最大公約数を返す。
 ///
 /// ```
 /// assert(gcd(0, 0) == 0)

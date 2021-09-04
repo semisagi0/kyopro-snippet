@@ -1,3 +1,4 @@
+// snippet_id: 8d82878e-4927-4f5a-a7f3-51c9668553a2
 struct Scanner {
     private var elements = [String]()
     private var index = 0

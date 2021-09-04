@@ -9,7 +9,8 @@
 		<string>TopLevel</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>struct Array2D&lt;Element&gt; {
+	<string>// snippet_id: 27d5b702-c362-4a2b-a2da-9f0f366e72b2
+struct Array2D&lt;Element&gt; {
     let n1: Int
     let n2: Int
     private var elements: [Element]

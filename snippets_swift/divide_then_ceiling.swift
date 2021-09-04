@@ -1,3 +1,4 @@
+// snippet_id: cec18690-8918-4c62-99f0-1a8df48d9a43
 infix operator /+: MultiplicationPrecedence // 切り上げ
 
 /// ```

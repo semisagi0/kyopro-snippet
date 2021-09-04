@@ -1,3 +1,4 @@
+// snippet_id: 0198c9af-f76c-4aa7-910f-f41fef11bfb8
 // # red black tree
 //
 // ## references
@@ -132,5 +133,37 @@ class TreeMap<Key: Comparable, Value> {
         }
         root = insert(root)
         root?.color = .black
+    }
+
+    func findKey(lessThan key: Key) -> Key? {
+        func f(_ x: Node?) -> Key? {
+            guard let x = x else { return nil }
+            if key <= x.key {
+                return f(x.left)
+            } else {
+                if let returned = f(x.right) {
+                    return returned
+                } else {
+                    return x.key
+                }
+            }
+        }
+        return f(root)
+    }
+
+    func findKey(greaterThan key: Key) -> Key? {
+        func f(_ x: Node?) -> Key? {
+            guard let x = x else { return nil }
+            if key >= x.key {
+                return f(x.right)
+            } else {
+                if let returned = f(x.left) {
+                    return returned
+                } else {
+                    return x.key
+                }
+            }
+        }
+        return f(root)
     }
 }

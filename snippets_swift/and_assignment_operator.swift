@@ -1,3 +1,4 @@
+// snippet_id: d806e8c2-8063-4883-92d1-99c4faa22cfe
 infix operator &&=: AssignmentPrecedence
 
 /**

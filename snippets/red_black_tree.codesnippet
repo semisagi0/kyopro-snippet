@@ -9,7 +9,8 @@
 		<string>TopLevel</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// # red black tree
+	<string>// snippet_id: 0198c9af-f76c-4aa7-910f-f41fef11bfb8
+// # red black tree
 //
 // ## references
 // - Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms, The MIT Press, third edition, 2009.
@@ -144,8 +145,39 @@ class TreeMap&lt;Key: Comparable, Value&gt; {
         root = insert(root)
         root?.color = .black
     }
-}
-</string>
+
+    func findKey(lessThan key: Key) -&gt; Key? {
+        func f(_ x: Node?) -&gt; Key? {
+            guard let x = x else { return nil }
+            if key &lt;= x.key {
+                return f(x.left)
+            } else {
+                if let returned = f(x.right) {
+                    return returned
+                } else {
+                    return x.key
+                }
+            }
+        }
+        return f(root)
+    }
+
+    func findKey(greaterThan key: Key) -&gt; Key? {
+        func f(_ x: Node?) -&gt; Key? {
+            guard let x = x else { return nil }
+            if key &gt;= x.key {
+                return f(x.right)
+            } else {
+                if let returned = f(x.left) {
+                    return returned
+                } else {
+                    return x.key
+                }
+            }
+        }
+        return f(root)
+    }
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>EE9E4138-AEF8-41CD-8DD5-65B525F0071C</string>
 	<key>IDECodeSnippetLanguage</key>

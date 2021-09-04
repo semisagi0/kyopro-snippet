@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string></string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// snippet_id: 79d428a6-df9f-4e13-895a-9171caa1a31b
+struct SlopeTrick {
+    private var addLeft: Int = 0
+    private var addRight: Int = 0
+    private var left: BinaryHeap&lt;Int&gt;
+    private var right: BinaryHeap&lt;Int&gt;
+    private var minimum: Int
+
+    init() {
+        self.left = .init(lessThan: &gt;)
+        self.right = .init(lessThan: &lt;)
+        self.minimum = 0
+    }
+
+    private mutating func insertLeft(_ x: Int) {
+        left.insert(x + addLeft)
+    }
+
+    private func peekLeft() -&gt; Int {
+        left.peekMin()! - addLeft
+    }
+
+    private mutating func popLeft() -&gt; Int {
+        left.extractMin()! - addLeft
+    }
+
+    private mutating func insertRight(_ x: Int) {
+        right.insert(x - addRight)
+    }
+
+    func peekRight() -&gt; Int {
+        right.peekMin()! + addRight
+    }
+
+    private mutating func popRight() -&gt; Int {
+        right.extractMin()! + addRight
+    }
+
+    // add max(0, x - a)
+    mutating func addPlus(_ a: Int) {
+        if !left.isEmpty {
+            minimum += max(0, peekLeft() - a)
+        }
+        insertLeft(a)
+        insertRight(popLeft())
+    }
+
+    // add max(0, a - x)
+    mutating func addMinus(_ a: Int) {
+        if !right.isEmpty {
+            minimum += max(0, a - peekRight())
+        }
+        insertRight(a)
+        insertLeft(popRight())
+    }
+
+    mutating func expand(_ x: Int) {
+        addLeft += x
+        addRight += x
+    }
+
+    func findMinimum() -&gt; Int {
+        minimum
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>A19921BD-8920-4E88-9C03-D9C6B5188844</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Slope Trick</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

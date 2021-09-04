@@ -1,3 +1,4 @@
+// snippet_id: 3ec5e116-e199-4792-84eb-9525425ec725
 struct Array4D<Element> {
     let n1: Int
     let n2: Int

@@ -1,3 +1,4 @@
+// snippet_id: 052a470b-fac9-4f06-a5a1-e4e42661417a
 struct Combination {
     private var factorial: [Zn]
     private var inverseFactorial: [Zn]
