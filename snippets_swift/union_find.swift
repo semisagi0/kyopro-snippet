@@ -1,3 +1,5 @@
+// snippet_id: 77ea187d-9248-473e-b09b-4876c2f7563e
+// https://github.com/semisagi0/kyopro-snippet
 /// [https://ja.wikipedia.org/wiki/素集合データ構造](https://ja.wikipedia.org/wiki/素集合データ構造)
 protocol UnionFind {
     associatedtype Element
@@ -5,6 +7,12 @@ protocol UnionFind {
     mutating func find(_ v: Element) -> Element
     mutating func unite(_ u: Element, _ v: Element)
     mutating func count(_ u: Element) -> Int
+}
+
+extension UnionFind where Element: Equatable {
+    mutating func same(_ x: Element, _ y: Element) -> Bool {
+        find(x) == find(y)
+    }
 }
 
 struct ArrayUnionFind: UnionFind {
@@ -66,6 +74,11 @@ func testArrayUnionFind() {
         assert(uf.find(0) == uf.find(1))
         assert(uf.find(0) == uf.find(2))
         assert(uf.find(3) == uf.find(4))
+        assert(uf.find(0) != uf.find(3))
+        assert(uf.same(0, 1))
+        assert(uf.same(0, 2))
+        assert(uf.same(3, 4))
+        assert(!uf.same(0, 3))
     }
 
     func testCount() {
@@ -173,6 +186,11 @@ func testHashedUnionFind() {
         assert(uf.find(0) == uf.find(1))
         assert(uf.find(0) == uf.find(2))
         assert(uf.find(3) == uf.find(4))
+        assert(uf.find(0) != uf.find(3))
+        assert(uf.same(0, 1))
+        assert(uf.same(0, 2))
+        assert(uf.same(3, 4))
+        assert(!uf.same(0, 3))
     }
 
     func testCount() {
@@ -192,3 +210,4 @@ func testHashedUnionFind() {
 }
 
 testHashedUnionFind()
+
