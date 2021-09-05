@@ -1,4 +1,5 @@
 // snippet_id: 8fa5965d-76d1-4de3-a76c-0b57a325733a
+// https://github.com/semisagi0/kyopro-snippet
 struct BinaryHeap<Value> {
     private var heap: [Value]
     private var lessThan: (Value, Value) -> Bool
@@ -51,5 +52,29 @@ struct BinaryHeap<Value> {
             k = l
         }
         return result
+    }
+}
+
+func testBinaryHeap() {
+    var heap = BinaryHeap<Int>(lessThan: <)
+    heap.insert(2)
+    heap.insert(1)
+    assert(heap.extractMin() == .some(1))
+    heap.insert(4)
+    heap.insert(3)
+    assert(heap.extractMin() == .some(2))
+    assert(heap.extractMin() == .some(3))
+    assert(heap.extractMin() == .some(4))
+    assert(heap.extractMin() == .none)
+    heap.insert(5)
+    assert(heap.extractMin() == .some(5))
+    assert(heap.extractMin() == .none)
+}
+
+testBinaryHeap()
+
+extension BinaryHeap: Sequence {
+    func makeIterator() -> some IteratorProtocol {
+        heap.makeIterator()
     }
 }

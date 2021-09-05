@@ -10,6 +10,7 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>// snippet_id: 8fa5965d-76d1-4de3-a76c-0b57a325733a
+// https://github.com/semisagi0/kyopro-snippet
 struct BinaryHeap&lt;Value&gt; {
     private var heap: [Value]
     private var lessThan: (Value, Value) -&gt; Bool
@@ -64,7 +65,30 @@ struct BinaryHeap&lt;Value&gt; {
         return result
     }
 }
-</string>
+
+func testBinaryHeap() {
+    var heap = BinaryHeap&lt;Int&gt;(lessThan: &lt;)
+    heap.insert(2)
+    heap.insert(1)
+    assert(heap.extractMin() == .some(1))
+    heap.insert(4)
+    heap.insert(3)
+    assert(heap.extractMin() == .some(2))
+    assert(heap.extractMin() == .some(3))
+    assert(heap.extractMin() == .some(4))
+    assert(heap.extractMin() == .none)
+    heap.insert(5)
+    assert(heap.extractMin() == .some(5))
+    assert(heap.extractMin() == .none)
+}
+
+testBinaryHeap()
+
+extension BinaryHeap: Sequence {
+    func makeIterator() -&gt; some IteratorProtocol {
+        heap.makeIterator()
+    }
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>EF81883C-B3FB-4A29-9890-7A1230197592</string>
 	<key>IDECodeSnippetLanguage</key>
