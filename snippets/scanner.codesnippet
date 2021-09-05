@@ -10,36 +10,42 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>// snippet_id: 8d82878e-4927-4f5a-a7f3-51c9668553a2
+// https://github.com/semisagi0/kyopro-snippet
 struct Scanner {
     private var elements = [String]()
     private var index = 0
 
     mutating func peek() -&gt; String {
         while elements.count == index {
-            elements = readLine()!.split(separator: " ").map(String.init)
+            elements = readLine()!.split(separator: " ").map(\.description)
             index = 0
         }
         return elements[index]
     }
 
-    mutating func next() -&gt; String {
-        defer { index += 1 }
+    mutating func nextString() -&gt; String {
+        defer {
+            index += 1
+        }
         return peek()
     }
 
-    mutating func nextInt() -&gt; Int {
-        return Int(next())!
+    mutating func nextStrings(count n: Int) -&gt; [String] {
+        return (0 ..&lt; n).map { _ in nextString() }
     }
 
-    mutating func nextInts(_ n: Int) -&gt; [Int] {
+    mutating func nextInt() -&gt; Int {
+        return Int(nextString())!
+    }
+
+    mutating func nextInts(count n: Int) -&gt; [Int] {
         return (0 ..&lt; n).map { _ in nextInt() }
     }
 
     mutating func nextDouble() -&gt; Double {
-        return Double(next())!
+        return Double(nextString())!
     }
-}
-</string>
+}</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>53636DB5-4AD4-41B7-B984-33C99FE86C0F</string>
 	<key>IDECodeSnippetLanguage</key>
