@@ -9,7 +9,9 @@
 		<string>TopLevel</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>struct PermutationSequence&lt;Element: Comparable&gt;: Sequence, IteratorProtocol {
+	<string>// snippet_id: 0a8c4b96-aa94-4ae3-b043-3b8db55728ae
+// https://github.com/semisagi0/kyopro-snippet
+struct PermutationSequence&lt;Element: Comparable&gt;: Sequence, IteratorProtocol {
     private var elements: [Element]?
 
     mutating func next() -&gt; [Element]? {
@@ -19,7 +21,7 @@
         while i &gt;= 0, elements[i] &gt;= elements[i + 1] {
             i -= 1
         }
-        if i == -1 {
+        if i &lt;= -1 {
             self.elements = nil
         } else {
             var j = elements.count - 1
@@ -39,7 +41,47 @@
     func makeIterator() -&gt; Iterator {
         self
     }
-}</string>
+}
+
+extension Sequence where Element: Comparable {
+    var permutations: PermutationSequence&lt;Element&gt; {
+        PermutationSequence(elements: self)
+    }
+}
+
+func testPermutations() {
+    assert(Array(([] as [Int]).permutations) == [[]])
+    assert(Array(([1] as [Int]).permutations) == [[1]])
+    assert(Array(([1, 2] as [Int]).permutations) == [[1, 2], [2, 1]])
+    assert(Array(([2, 1] as [Int]).permutations) == [[1, 2], [2, 1]])
+    assert(Array(([1, 1] as [Int]).permutations) == [[1, 1]])
+    assert(
+        Array(([1, 2, 3] as [Int]).permutations) ==
+            [
+                [1, 2, 3],
+                [1, 3, 2],
+                [2, 1, 3],
+                [2, 3, 1],
+                [3, 1, 2],
+                [3, 2, 1]
+            ]
+    )
+    assert(
+        Array("abc".permutations) ==
+            [
+                ["a", "b", "c"],
+                ["a", "c", "b"],
+                ["b", "a", "c"],
+                ["b", "c", "a"],
+                ["c", "a", "b"],
+                ["c", "b", "a"]
+            ]
+    )
+    assert(Array("aab".permutations) == [["a", "a", "b"], ["a", "b", "a"], ["b", "a", "a"]])
+}
+
+testPermutations()
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>5FB23689-6C33-4704-B512-072F1DB4CA2E</string>
 	<key>IDECodeSnippetLanguage</key>
