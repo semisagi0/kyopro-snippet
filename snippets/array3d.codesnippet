@@ -10,28 +10,41 @@
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>// snippet_id: 1a5e73a2-96a8-4b3e-8d8b-05eee049765c
+// https://github.com/semisagi0/kyopro-snippet
 struct Array3D&lt;Element&gt; {
     let n1: Int
     let n2: Int
     let n3: Int
     private var elements: [Element]
-    
+
     init(repeating: Element, _ n1: Int, _ n2: Int, _ n3: Int) {
+        precondition(n1 &gt;= 0)
+        precondition(n2 &gt;= 0)
+        precondition(n3 &gt;= 0)
         self.n1 = n1
         self.n2 = n2
         self.n3 = n3
         self.elements = [Element](repeating: repeating, count: n1 * n2 * n3)
     }
-    
+
     subscript(i: Int, j: Int, k: Int) -&gt; Element {
         get {
-            elements[(i * n2 + j) * n3 + k]
+            #if DEBUG
+            precondition(0 &lt;= i &amp;&amp; i &lt; n1)
+            precondition(0 &lt;= j &amp;&amp; j &lt; n2)
+            #endif
+            return elements[(i * n2 + j) * n3 + k]
         }
         set {
+            #if DEBUG
+            precondition(0 &lt;= i &amp;&amp; i &lt; n1)
+            precondition(0 &lt;= j &amp;&amp; j &lt; n2)
+            #endif
             elements[(i * n2 + j) * n3 + k] = newValue
         }
     }
 }
+
 </string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>8C2C11D8-2653-42BF-BA5D-A2643513B6D5</string>
