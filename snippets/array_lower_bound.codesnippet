@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myarraylowerbound</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// snippet_id: 8f13c2c6-8ae3-436d-90da-a0b052b8341f
+// https://github.com/semisagi0/kyopro-snippet
+extension Array where Element: Comparable {
+    func lowerBound(_ x: Element) -&gt; Int {
+        var yes = count
+        var no = -1
+        while yes - no &gt; 1 {
+            let m = (yes + no) / 2
+            if self[m] &gt;= x {
+                yes = m
+            } else {
+                no = m
+            }
+        }
+        return yes
+    }
+}
+
+func testLowerBound() {
+    assert([1, 1, 2, 3, 3].lowerBound(0) == 0)
+    assert([1, 1, 2, 3, 3].lowerBound(1) == 0)
+    assert([1, 1, 2, 3, 3].lowerBound(2) == 2)
+    assert([1, 1, 2, 3, 3].lowerBound(3) == 3)
+    assert([1, 1, 2, 3, 3].lowerBound(4) == 5)
+}
+
+testLowerBound()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>32B49C0D-76B9-4A4A-8E15-941D6C9FE81A</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Array Lower Bound</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>

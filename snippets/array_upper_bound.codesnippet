@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myarrayupperbound</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// snippet_id: 205bbcf6-55ea-40ba-bf6b-c54e8efe9b90
+// https://github.com/semisagi0/kyopro-snippet
+extension Array where Element: Comparable {
+    func upperBound(_ x: Element) -&gt; Int {
+        var yes = count
+        var no = -1
+        while yes - no &gt; 1 {
+            let m = (yes + no) / 2
+            if self[m] &gt; x {
+                yes = m
+            } else {
+                no = m
+            }
+        }
+        return yes
+    }
+}
+
+
+func testUpperBound() {
+    assert([1, 1, 2, 3, 3].upperBound(0) == 0)
+    assert([1, 1, 2, 3, 3].upperBound(1) == 2)
+    assert([1, 1, 2, 3, 3].upperBound(2) == 3)
+    assert([1, 1, 2, 3, 3].upperBound(3) == 5)
+    assert([1, 1, 2, 3, 3].upperBound(4) == 5)
+}
+
+testUpperBound()</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F8732424-B953-4D46-A85C-745C0C51BC7B</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Array Upper Bound</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
