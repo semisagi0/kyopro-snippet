@@ -1,4 +1,5 @@
 // snippet_id: 479ac407-934b-47be-b700-b4cbafab5f77
+// https://github.com/semisagi0/kyopro-snippet
 infix operator ||=: AssignmentPrecedence
 
 /**
