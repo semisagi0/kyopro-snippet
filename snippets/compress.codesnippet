@@ -9,7 +9,9 @@
 		<string>TopLevel</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>func rank&lt;Element: Comparable &amp; Hashable&gt;(_ a: [Element]) -&gt; [Element: Int] {
+	<string>// snippet_id: 40a2126d-7ac6-4ae9-b182-48911851898d
+// https://github.com/semisagi0/kyopro-snippet
+func rank&lt;Element: Comparable &amp; Hashable&gt;(_ a: [Element]) -&gt; [Element: Int] {
     var result = [Element: Int]()
     for x in a.sorted() {
         if !result.keys.contains(x) {
@@ -24,7 +26,8 @@ extension Array where Element: Comparable &amp; Hashable {
         let r = rank(self)
         return map { r[$0]! }
     }
-}</string>
+}
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>89A383EA-0078-4C9F-9FDD-45C55ACD2A11</string>
 	<key>IDECodeSnippetLanguage</key>
