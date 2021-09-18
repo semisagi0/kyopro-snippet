@@ -1,3 +1,5 @@
+// snippet_id: c29955e9-f71e-436f-94d6-98df5492f8e1
+// https://github.com/semisagi0/kyopro-snippet
 func binarySearch(yes: Double, no: Double, iteration: Int, predicate: (Double) -> Bool) -> Double {
     assert(predicate(yes))
     assert(!predicate(no))

@@ -6,7 +6,7 @@
 	<string>mypositionalnotation</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>All</string>
+		<string>TopLevel</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
 	<string>// snippet_id: c3cdf631-5bd3-4eaa-823b-4743725b964f
@@ -51,6 +51,6 @@ testPositionalNotation()
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>

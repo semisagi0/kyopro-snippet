@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>myoptionalapply</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// snippet_id: ea7826eb-c099-48be-8207-a223e91803ee
+// https://github.com/semisagi0/kyopro-snippet
+extension Optional {
+    mutating func apply(handler: (inout Wrapped) -&gt; Void) {
+        self = map {
+            var wrapped = $0
+            handler(&amp;wrapped)
+            return wrapped
+        }
+    }
+}
+
+func testOptionalApply() {
+    struct Dog {
+        var apples: Int = 10
+
+        mutating func eat() {
+            apples -= 1
+        }
+    }
+
+    func testForSome() {
+        var dog: Dog? = .init()
+        dog.apply { dog in
+            dog.eat()
+            dog.eat()
+            dog.eat()
+        }
+        assert(dog?.apples == .some(7))
+    }
+
+    func testForNone() {
+        var dog: Dog? = nil
+        dog.apply { dog in
+            dog.eat()
+            dog.eat()
+            dog.eat()
+        }
+        assert(dog?.apples == .none)
+    }
+
+    testForSome()
+    testForNone()
+}
+
+testOptionalApply()
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B61F56EF-186A-49C5-9094-9FD00018FE69</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Optional Apply</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
