@@ -20,10 +20,16 @@ output_swift_directory.mkdir(exist_ok=True)
 
 for snippet_path in snippets_directory.glob('*.codesnippet'):
     plist = plist_parser.parse_only_string_values(snippet_path)
+    file_stem = pathlib.PosixPath(normalized_name(plist['IDECodeSnippetTitle']))
+    output_path = output_directory / file_stem.with_suffix(".codesnippet")
+    print(f"Copy: {snippet_path.name} -> {output_path}")
+    shutil.copy(snippet_path, output_path)
 
-    file_stem = normalized_name(plist['IDECodeSnippetTitle'])
-    shutil.copy(snippet_path, output_directory / (file_stem + '.codesnippet'))
-
+for snippet_path in snippets_directory.glob('*.codesnippet'):
+    plist = plist_parser.parse_only_string_values(snippet_path)
+    file_stem = pathlib.PosixPath(normalized_name(plist['IDECodeSnippetTitle']))
+    output_path = output_swift_directory / file_stem.with_suffix(".swift")
+    print(f"Extract: {snippet_path.name} -> {output_path}")
     content = plist['IDECodeSnippetContents']
-    with (output_swift_directory / (file_stem + '.swift')).open(mode='w') as file:
+    with output_path.open(mode='w') as file:
         file.write(content)
