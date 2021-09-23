@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mybitset</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// snippet_id: 44f1e354-8515-4060-8b2c-e1b5668fde5d
+// // https://github.com/semisagi0/kyopro-snippet
+struct Bitset: Equatable {
+    private var bits: [UInt64]
+    let count: Int
+
+    init(count n: Int) {
+        self.count = n
+        self.bits = [UInt64](repeating: 0, count: (n + 63) / 64)
+    }
+
+    private mutating func normalize() {
+        let width = count % 64
+        if bits.count &gt; 0 &amp;&amp; width != 0 {
+            self.bits[bits.count - 1] &amp;= 1 &lt;&lt; width - 1
+        }
+    }
+
+    subscript(index: Int) -&gt; Bool {
+        get {
+            self.bits[index / 64] &gt;&gt; (index % 64) &amp; 1 == 1
+        }
+        set {
+            if newValue {
+                self.bits[index / 64] |= 1 &lt;&lt; (index % 64)
+            } else {
+                self.bits[index / 64] &amp;= ~(1 &lt;&lt; (index % 64))
+            }
+        }
+    }
+
+    /// - Complexity: O(n / 64)
+    func nonzeroBitCount() -&gt; Int {
+        var result = 0
+        for i in 0 ..&lt; self.bits.count {
+            result += bits[i].nonzeroBitCount
+        }
+        return result
+    }
+
+    static func == (lhs: Bitset, rhs: Bitset) -&gt; Bool {
+        for i in 0 ..&lt; lhs.bits.count {
+            if lhs.bits[i] != rhs.bits[i] {
+                return false
+            }
+        }
+        return true
+    }
+
+    static prefix func ~ (value: Bitset) -&gt; Bitset {
+        var result = Bitset(count: value.count)
+        for i in 0 ..&lt; value.bits.count {
+            result.bits[i] = ~value.bits[i]
+        }
+        result.normalize()
+        return result
+    }
+
+    static func &amp; (lhs: Bitset, rhs: Bitset) -&gt; Bitset {
+        var result = Bitset(count: lhs.count)
+        for i in 0 ..&lt; lhs.bits.count {
+            result.bits[i] = lhs.bits[i] &amp; rhs.bits[i]
+        }
+        return result
+    }
+
+    static func &amp;= (lhs: inout Bitset, rhs: Bitset) {
+        for i in 0 ..&lt; lhs.bits.count {
+            lhs.bits[i] &amp;= rhs.bits[i]
+        }
+    }
+
+    static func | (lhs: Bitset, rhs: Bitset) -&gt; Bitset {
+        var result = Bitset(count: lhs.count)
+        result.bits.withUnsafeMutableBufferPointer { resultBuffer in
+            lhs.bits.withUnsafeBufferPointer { lhsBuffer in
+                rhs.bits.withUnsafeBufferPointer { rhsBuffer in
+                    for i in 0 ..&lt; lhs.bits.count {
+                        resultBuffer[i] = lhsBuffer[i] | rhsBuffer[i]
+                    }
+                }
+            }
+        }
+        return result
+    }
+
+    static func |= (lhs: inout Bitset, rhs: Bitset) {
+        for i in 0 ..&lt; lhs.bits.count {
+            lhs.bits[i] |= rhs.bits[i]
+        }
+    }
+
+    static func ^ (lhs: Bitset, rhs: Bitset) -&gt; Bitset {
+        var result = Bitset(count: lhs.count)
+        for i in 0 ..&lt; lhs.bits.count {
+            result.bits[i] = lhs.bits[i] &amp; rhs.bits[i]
+        }
+        return result
+    }
+
+    static func ^= (lhs: inout Bitset, rhs: Bitset) {
+        for i in 0 ..&lt; lhs.bits.count {
+            lhs.bits[i] ^= rhs.bits[i]
+        }
+    }
+
+    static func &lt;&lt; (lhs: Bitset, rhs: Int) -&gt; Bitset {
+        precondition(rhs &gt;= 0)
+        var result = Bitset(count: lhs.count)
+        let large = rhs / 64
+        let small = rhs % 64
+        result.bits.withUnsafeMutableBufferPointer { resultBuffer in
+            lhs.bits.withUnsafeBufferPointer { lhsBuffer in
+                if large &lt;= lhs.bits.count {
+                    for i in 0 ..&lt; lhs.bits.count - large {
+                        resultBuffer[i + large] |= lhsBuffer[i] &lt;&lt; small
+                    }
+                }
+                if large + 1 &lt;= lhs.bits.count {
+                    for i in 0 ..&lt; lhs.bits.count - large - 1 {
+                        resultBuffer[i + large + 1] |= lhsBuffer[i] &gt;&gt; (64 - small)
+                    }
+                }
+            }
+        }
+        result.normalize()
+        return result
+    }
+
+    static func &lt;&lt;= (lhs: inout Bitset, rhs: Int) {
+        lhs = lhs &lt;&lt; rhs
+    }
+}
+
+func testBitset() {
+    func testLeftShift() {
+        var bitset = Bitset(count: 200)
+        bitset[1] = true
+        bitset[2] = true
+        bitset[61] = true
+        bitset[63] = true
+
+        var expected = Bitset(count: 200)
+        expected[101] = true
+        expected[102] = true
+        expected[161] = true
+        expected[163] = true
+
+        assert(bitset &lt;&lt; 100 == expected)
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>403F8F9A-00CB-4ECC-8439-B75FB8CFF793</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Bitset</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
