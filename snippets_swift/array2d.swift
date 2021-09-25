@@ -13,19 +13,36 @@ struct Array2D<Element> {
         self.elements = [Element](repeating: repeating, count: n1 * n2)
     }
 
+    init(_ array: [[Element]]) {
+        if array.isEmpty {
+            self.n1 = 0
+            self.n2 = 0
+            self.elements = []
+            return
+        }
+        self.n1 = array.count
+        self.n2 = array[0].count
+        self.elements = [Element]()
+        for i in 0 ..< array.count {
+            for j in 0 ..< array[i].count {
+                self.elements.append(array[i][j])
+            }
+        }
+    }
+
     subscript(i: Int, j: Int) -> Element {
         get {
-            #if DEBUG
+#if DEBUG
             precondition(0 <= i && i < n1)
             precondition(0 <= j && j < n2)
-            #endif
+#endif
             return elements[i * n2 + j]
         }
         set {
-            #if DEBUG
+#if DEBUG
             precondition(0 <= i && i < n1)
             precondition(0 <= j && j < n2)
-            #endif
+#endif
             elements[i * n2 + j] = newValue
         }
     }
@@ -38,3 +55,26 @@ struct Array2D<Element> {
         (0 ..< n1).map { self[$0, j] }
     }
 }
+
+extension Array2D: CustomDebugStringConvertible {
+    var debugDescription: String {
+        "[\n    " + (0 ..< n1).map { row($0).debugDescription }.joined(separator: ",\n    ") + "\n]"
+    }
+}
+
+func testArray2D() {
+    func testDebugStringConvertible() {
+        let array = Array2D([[1, 2, 3], [4, 5, 6]])
+        assert(array.debugDescription ==
+"""
+[
+    [1, 2, 3],
+    [4, 5, 6]
+]
+""")
+    }
+
+    testDebugStringConvertible()
+}
+
+testArray2D()

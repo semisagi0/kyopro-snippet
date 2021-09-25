@@ -42,10 +42,21 @@ struct Scanner {
         return (0 ..&lt; n).map { _ in nextInt() }
     }
 
+    mutating func nextPairInts(count n: Int) -&gt; ([Int], [Int]) {
+        var a = [Int]()
+        var b = [Int]()
+        for _ in 0 ..&lt; n {
+            a.append(nextInt())
+            b.append(nextInt())
+        }
+        return (a, b)
+    }
+
     mutating func nextDouble() -&gt; Double {
         return Double(nextString())!
     }
-}</string>
+}
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>53636DB5-4AD4-41B7-B984-33C99FE86C0F</string>
 	<key>IDECodeSnippetLanguage</key>

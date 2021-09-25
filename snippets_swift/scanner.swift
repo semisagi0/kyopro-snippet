@@ -31,6 +31,16 @@ struct Scanner {
         return (0 ..< n).map { _ in nextInt() }
     }
 
+    mutating func nextPairInts(count n: Int) -> ([Int], [Int]) {
+        var a = [Int]()
+        var b = [Int]()
+        for _ in 0 ..< n {
+            a.append(nextInt())
+            b.append(nextInt())
+        }
+        return (a, b)
+    }
+
     mutating func nextDouble() -> Double {
         return Double(nextString())!
     }
