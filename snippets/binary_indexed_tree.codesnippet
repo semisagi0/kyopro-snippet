@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mybit</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>// snippet_id: a1cd31a0-4f0e-43ad-ba3f-9dd67501df8c
+// https://github.com/semisagi0/kyopro-snippet
+struct BinaryIndexedTree&lt;Element&gt; where Element: AdditiveArithmetic {
+    private var elements: [Element]
+
+    var count: Int {
+        elements.count - 1
+    }
+
+    init(_ n: Int) {
+        precondition(n &gt;= 0)
+        elements = [Element](repeating: .zero, count: n + 1)
+    }
+
+    subscript(k: Int) -&gt; Element {
+        get {
+            return sum(k ..&lt; k + 1)
+        }
+        set {
+            let s = self[k]
+            add(at: k, .zero - s)
+            add(at: k, newValue)
+        }
+    }
+
+    mutating func add(at: Int, _ value: Element) {
+        precondition((0 ..&lt; count).contains(at))
+        var n = at + 1
+        while n &lt; elements.count {
+            elements[n] += value
+            n += n &amp; -n
+        }
+    }
+
+    private func sum(_ k: Int) -&gt; Element {
+        precondition((0 ... count).contains(k))
+        var n = k
+        var result = Element.zero
+        while n &gt; 0 {
+            result += elements[n]
+            n -= n &amp; -n
+        }
+        return result
+    }
+
+    func sum(_ range: Range&lt;Int&gt;) -&gt; Element {
+        sum(range.upperBound) - sum(range.lowerBound)
+    }
+
+    func sum(_ range: ClosedRange&lt;Int&gt;) -&gt; Element {
+        sum(range.upperBound + 1) - sum(range.lowerBound)
+    }
+
+    func sum(_ range: PartialRangeFrom&lt;Int&gt;) -&gt; Element {
+        sum(count) - sum(range.lowerBound)
+    }
+
+    func sum(_ range: PartialRangeUpTo&lt;Int&gt;) -&gt; Element {
+        sum(range.upperBound)
+    }
+
+    func sum(_ range: PartialRangeThrough&lt;Int&gt;) -&gt; Element {
+        sum(range.upperBound + 1)
+    }
+
+    func sum(_ range: UnboundedRange) -&gt; Element {
+        sum(count)
+    }
+}
+
+func testBinaryIndexedTree() {
+    func testUpdate() {
+        var bit = BinaryIndexedTree&lt;Int&gt;(5)
+        bit.add(at: 0, 1) // [1, 0, 0, 0, 0]
+        bit.add(at: 1, 2) // [1, 2, 0, 0, 0]
+        bit.add(at: 2, 3) // [1, 2, 3, 0, 0]
+    }
+
+    func testSum() {
+        var bit = BinaryIndexedTree&lt;Int&gt;(5)
+        bit.add(at: 0, 1)
+        bit.add(at: 1, 2)
+        bit.add(at: 2, 4)
+        bit.add(at: 3, 8)
+        bit.add(at: 4, 16)
+
+        assert(bit.sum(...) == 1 + 2 + 4 + 8 + 16)
+
+        assert(bit.sum(..&lt;0) == 0)
+        assert(bit.sum(..&lt;1) == 1)
+        assert(bit.sum(..&lt;2) == 1 + 2)
+        assert(bit.sum(..&lt;3) == 1 + 2 + 4)
+        assert(bit.sum(..&lt;4) == 1 + 2 + 4 + 8)
+        assert(bit.sum(..&lt;5) == 1 + 2 + 4 + 8 + 16)
+
+        assert(bit.sum(...0) == 1)
+        assert(bit.sum(...1) == 1 + 2)
+        assert(bit.sum(...2) == 1 + 2 + 4)
+        assert(bit.sum(...3) == 1 + 2 + 4 + 8)
+        assert(bit.sum(...4) == 1 + 2 + 4 + 8 + 16)
+
+        assert(bit.sum(0...) == 1 + 2 + 4 + 8 + 16)
+        assert(bit.sum(1...) == 2 + 4 + 8 + 16)
+        assert(bit.sum(2...) == 4 + 8 + 16)
+        assert(bit.sum(3...) == 8 + 16)
+        assert(bit.sum(4...) == 16)
+
+        assert(bit.sum(1 ..&lt; 2) == 2)
+        assert(bit.sum(1 ..&lt; 3) == 2 + 4)
+        assert(bit.sum(1 ..&lt; 4) == 2 + 4 + 8)
+        assert(bit.sum(1 ..&lt; 5) == 2 + 4 + 8 + 16)
+
+        assert(bit.sum(0 ..&lt; 0) == 0)
+        assert(bit.sum(1 ..&lt; 1) == 0)
+        assert(bit.sum(5 ..&lt; 5) == 0)
+
+        assert(bit.sum(1 ... 2) == 2 + 4)
+        assert(bit.sum(1 ... 3) == 2 + 4 + 8)
+        assert(bit.sum(1 ... 4) == 2 + 4 + 8 + 16)
+
+        assert(bit[0] == 1)
+        assert(bit[1] == 2)
+        assert(bit[2] == 4)
+        assert(bit[3] == 8)
+        assert(bit[4] == 16)
+
+        bit[3] = 32
+        assert(bit[0] == 1)
+        assert(bit[1] == 2)
+        assert(bit[2] == 4)
+        assert(bit[3] == 32)
+        assert(bit[4] == 16)
+    }
+
+    testUpdate()
+    testSum()
+}
+
+testBinaryIndexedTree()
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>C3BE6694-A0BA-4753-8CDD-F6142A0D354F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Binary Indexed Tree</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
