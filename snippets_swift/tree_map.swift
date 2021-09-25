@@ -1,23 +1,23 @@
 // snippet_id: f416ade0-91ea-4a58-adae-2b05bac173da
 // https://github.com/semisagi0/kyopro-snippet
 protocol BinarySearchTreeNode {
-    associatedtype NodeType: BinarySearchTreeNode
+    associatedtype Node: BinarySearchTreeNode
     associatedtype Key: Comparable
     associatedtype Value
-    var left: NodeType? { get }
-    var right: NodeType? { get }
+    var left: Node? { get }
+    var right: Node? { get }
     var key: Key { get }
     var value: Value { get }
 }
 
 protocol BinarySearchTree {
-    associatedtype NodeType: BinarySearchTreeNode where NodeType.NodeType == NodeType
-    var root: NodeType? { get }
+    associatedtype Node: BinarySearchTreeNode where Node.Node == Node
+    var root: Node? { get }
 }
 
 extension BinarySearchTree {
-    func contains(key: NodeType.Key) -> Bool {
-        func contains(_ x: NodeType?) -> Bool {
+    func contains(key: Node.Key) -> Bool {
+        func contains(_ x: Node?) -> Bool {
             guard let x = x else { return false }
             if key == x.key {
                 return true
@@ -31,8 +31,8 @@ extension BinarySearchTree {
         return contains(root)
     }
 
-    func find(key: NodeType.Key) -> NodeType.Value? {
-        func find(_ x: NodeType?) -> NodeType? {
+    func find(key: Node.Key) -> Node.Value? {
+        func find(_ x: Node?) -> Node? {
             guard let x = x else { return nil }
             if key == x.key {
                 return x
@@ -46,8 +46,8 @@ extension BinarySearchTree {
         return find(root)?.value
     }
 
-    func findKey(lessThan key: NodeType.Key) -> NodeType.Key? {
-        func f(_ x: NodeType?) -> NodeType.Key? {
+    func findKey(lessThan key: Node.Key) -> Node.Key? {
+        func f(_ x: Node?) -> Node.Key? {
             guard let x = x else { return nil }
             if key <= x.key {
                 return f(x.left)
@@ -62,8 +62,8 @@ extension BinarySearchTree {
         return f(root)
     }
 
-    func findKey(greaterThan key: NodeType.Key) -> NodeType.Key? {
-        func f(_ x: NodeType?) -> NodeType.Key? {
+    func findKey(greaterThan key: Node.Key) -> Node.Key? {
+        func f(_ x: Node?) -> Node.Key? {
             guard let x = x else { return nil }
             if key >= x.key {
                 return f(x.right)
@@ -82,16 +82,12 @@ extension BinarySearchTree {
 // ## references
 // - Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms, The MIT Press, third edition, 2009.
 class RedBlackTreeMap<Key: Comparable, Value>: BinarySearchTree {
-    typealias NodeType = Node
-
     enum Color {
         case red
         case black
     }
 
     class Node: BinarySearchTreeNode {
-        typealias NodeType = Node
-
         var key: Key
         var value: Value
         var left: Node?
@@ -190,11 +186,7 @@ class RedBlackTreeMap<Key: Comparable, Value>: BinarySearchTree {
 
 
 class TreapMap<Key, Value>: BinarySearchTree where Key: Comparable {
-    typealias NodeType = Node
-
     class Node: BinarySearchTreeNode {
-        typealias NodeType = Node
-
         var left: Node?
         var right: Node?
         var priority: Int
@@ -226,7 +218,7 @@ class TreapMap<Key, Value>: BinarySearchTree where Key: Comparable {
         return y
     }
 
-    func insert(_ key: Key, _ value: Value) {
+    func insert(key: Key, value: Value) {
         func insert(_ x: Node?) -> Node {
             guard var x = x else {
                 return Node(key: key, value: value)
@@ -249,7 +241,7 @@ class TreapMap<Key, Value>: BinarySearchTree where Key: Comparable {
         self.root = insert(self.root)
     }
 
-    func remove(_ key: Key) {
+    func remove(key: Key) {
         func remove(_ x: Node?) -> Node? {
             guard let x = x else {
                 return nil

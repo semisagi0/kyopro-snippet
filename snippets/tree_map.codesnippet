@@ -12,23 +12,23 @@
 	<string>// snippet_id: f416ade0-91ea-4a58-adae-2b05bac173da
 // https://github.com/semisagi0/kyopro-snippet
 protocol BinarySearchTreeNode {
-    associatedtype NodeType: BinarySearchTreeNode
+    associatedtype Node: BinarySearchTreeNode
     associatedtype Key: Comparable
     associatedtype Value
-    var left: NodeType? { get }
-    var right: NodeType? { get }
+    var left: Node? { get }
+    var right: Node? { get }
     var key: Key { get }
     var value: Value { get }
 }
 
 protocol BinarySearchTree {
-    associatedtype NodeType: BinarySearchTreeNode where NodeType.NodeType == NodeType
-    var root: NodeType? { get }
+    associatedtype Node: BinarySearchTreeNode where Node.Node == Node
+    var root: Node? { get }
 }
 
 extension BinarySearchTree {
-    func contains(key: NodeType.Key) -&gt; Bool {
-        func contains(_ x: NodeType?) -&gt; Bool {
+    func contains(key: Node.Key) -&gt; Bool {
+        func contains(_ x: Node?) -&gt; Bool {
             guard let x = x else { return false }
             if key == x.key {
                 return true
@@ -42,8 +42,8 @@ extension BinarySearchTree {
         return contains(root)
     }
 
-    func find(key: NodeType.Key) -&gt; NodeType.Value? {
-        func find(_ x: NodeType?) -&gt; NodeType? {
+    func find(key: Node.Key) -&gt; Node.Value? {
+        func find(_ x: Node?) -&gt; Node? {
             guard let x = x else { return nil }
             if key == x.key {
                 return x
@@ -57,8 +57,8 @@ extension BinarySearchTree {
         return find(root)?.value
     }
 
-    func findKey(lessThan key: NodeType.Key) -&gt; NodeType.Key? {
-        func f(_ x: NodeType?) -&gt; NodeType.Key? {
+    func findKey(lessThan key: Node.Key) -&gt; Node.Key? {
+        func f(_ x: Node?) -&gt; Node.Key? {
             guard let x = x else { return nil }
             if key &lt;= x.key {
                 return f(x.left)
@@ -73,8 +73,8 @@ extension BinarySearchTree {
         return f(root)
     }
 
-    func findKey(greaterThan key: NodeType.Key) -&gt; NodeType.Key? {
-        func f(_ x: NodeType?) -&gt; NodeType.Key? {
+    func findKey(greaterThan key: Node.Key) -&gt; Node.Key? {
+        func f(_ x: Node?) -&gt; Node.Key? {
             guard let x = x else { return nil }
             if key &gt;= x.key {
                 return f(x.right)
@@ -93,16 +93,12 @@ extension BinarySearchTree {
 // ## references
 // - Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. Introduction to Algorithms, The MIT Press, third edition, 2009.
 class RedBlackTreeMap&lt;Key: Comparable, Value&gt;: BinarySearchTree {
-    typealias NodeType = Node
-
     enum Color {
         case red
         case black
     }
 
     class Node: BinarySearchTreeNode {
-        typealias NodeType = Node
-
         var key: Key
         var value: Value
         var left: Node?
@@ -201,11 +197,7 @@ class RedBlackTreeMap&lt;Key: Comparable, Value&gt;: BinarySearchTree {
 
 
 class TreapMap&lt;Key, Value&gt;: BinarySearchTree where Key: Comparable {
-    typealias NodeType = Node
-
     class Node: BinarySearchTreeNode {
-        typealias NodeType = Node
-
         var left: Node?
         var right: Node?
         var priority: Int
@@ -237,7 +229,7 @@ class TreapMap&lt;Key, Value&gt;: BinarySearchTree where Key: Comparable {
         return y
     }
 
-    func insert(_ key: Key, _ value: Value) {
+    func insert(key: Key, value: Value) {
         func insert(_ x: Node?) -&gt; Node {
             guard var x = x else {
                 return Node(key: key, value: value)
@@ -260,7 +252,7 @@ class TreapMap&lt;Key, Value&gt;: BinarySearchTree where Key: Comparable {
         self.root = insert(self.root)
     }
 
-    func remove(_ key: Key) {
+    func remove(key: Key) {
         func remove(_ x: Node?) -&gt; Node? {
             guard let x = x else {
                 return nil
@@ -294,7 +286,8 @@ class TreapMap&lt;Key, Value&gt;: BinarySearchTree where Key: Comparable {
         }
         self.root = remove(self.root)
     }
-}</string>
+}
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>FCFC24EB-CAC3-433A-BEFD-5963D633FD11</string>
 	<key>IDECodeSnippetLanguage</key>
