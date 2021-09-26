@@ -25,20 +25,8 @@ struct StaticRangeSum<Element> where Element: AdditiveArithmetic {
         prefixSum[range.upperBound] - prefixSum[range.lowerBound]
     }
 
-    subscript(range: ClosedRange<Int>) -> Element {
-        prefixSum[range.upperBound + 1] - prefixSum[range.lowerBound]
-    }
-
-    subscript(range: PartialRangeFrom<Int>) -> Element {
-        prefixSum.last! - prefixSum[range.lowerBound]
-    }
-
-    subscript(range: PartialRangeUpTo<Int>) -> Element {
-        prefixSum[range.upperBound]
-    }
-
-    subscript(range: PartialRangeThrough<Int>) -> Element {
-        prefixSum[range.upperBound + 1]
+    subscript<R>(range: R) -> Element where R: RangeExpression, R.Bound == Int {
+        self[range.relative(to: 0 ..< prefixSum.count - 1)]
     }
 }
 

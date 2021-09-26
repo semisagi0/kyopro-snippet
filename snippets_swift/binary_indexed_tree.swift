@@ -1,3 +1,5 @@
+import Foundation
+
 // snippet_id: a1cd31a0-4f0e-43ad-ba3f-9dd67501df8c
 // https://github.com/semisagi0/kyopro-snippet
 struct BinaryIndexedTree<Element> where Element: AdditiveArithmetic {
@@ -47,20 +49,8 @@ struct BinaryIndexedTree<Element> where Element: AdditiveArithmetic {
         sum(range.upperBound) - sum(range.lowerBound)
     }
 
-    func sum(_ range: ClosedRange<Int>) -> Element {
-        sum(range.upperBound + 1) - sum(range.lowerBound)
-    }
-
-    func sum(_ range: PartialRangeFrom<Int>) -> Element {
-        sum(count) - sum(range.lowerBound)
-    }
-
-    func sum(_ range: PartialRangeUpTo<Int>) -> Element {
-        sum(range.upperBound)
-    }
-
-    func sum(_ range: PartialRangeThrough<Int>) -> Element {
-        sum(range.upperBound + 1)
+    func sum<R: RangeExpression>(_ range: R) -> Element where R.Bound == Int {
+        sum(range.relative(to: 0 ..< count))
     }
 
     func sum(_ range: UnboundedRange) -> Element {

@@ -6,10 +6,12 @@
 	<string>mybit</string>
 	<key>IDECodeSnippetCompletionScopes</key>
 	<array>
-		<string>All</string>
+		<string>TopLevel</string>
 	</array>
 	<key>IDECodeSnippetContents</key>
-	<string>// snippet_id: a1cd31a0-4f0e-43ad-ba3f-9dd67501df8c
+	<string>import Foundation
+
+// snippet_id: a1cd31a0-4f0e-43ad-ba3f-9dd67501df8c
 // https://github.com/semisagi0/kyopro-snippet
 struct BinaryIndexedTree&lt;Element&gt; where Element: AdditiveArithmetic {
     private var elements: [Element]
@@ -58,20 +60,8 @@ struct BinaryIndexedTree&lt;Element&gt; where Element: AdditiveArithmetic {
         sum(range.upperBound) - sum(range.lowerBound)
     }
 
-    func sum(_ range: ClosedRange&lt;Int&gt;) -&gt; Element {
-        sum(range.upperBound + 1) - sum(range.lowerBound)
-    }
-
-    func sum(_ range: PartialRangeFrom&lt;Int&gt;) -&gt; Element {
-        sum(count) - sum(range.lowerBound)
-    }
-
-    func sum(_ range: PartialRangeUpTo&lt;Int&gt;) -&gt; Element {
-        sum(range.upperBound)
-    }
-
-    func sum(_ range: PartialRangeThrough&lt;Int&gt;) -&gt; Element {
-        sum(range.upperBound + 1)
+    func sum&lt;R: RangeExpression&gt;(_ range: R) -&gt; Element where R.Bound == Int {
+        sum(range.relative(to: 0 ..&lt; count))
     }
 
     func sum(_ range: UnboundedRange) -&gt; Element {
@@ -147,8 +137,7 @@ func testBinaryIndexedTree() {
     testSum()
 }
 
-testBinaryIndexedTree()
-</string>
+testBinaryIndexedTree()</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>C3BE6694-A0BA-4753-8CDD-F6142A0D354F</string>
 	<key>IDECodeSnippetLanguage</key>

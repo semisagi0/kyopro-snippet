@@ -16,8 +16,20 @@ struct StaticRangeSum2D<Element> where Element: AdditiveArithmetic {
         sum[range1.upperBound, range2.upperBound] - sum[range1.lowerBound, range2.upperBound] - sum[range1.upperBound, range2.lowerBound] + sum[range1.lowerBound, range2.lowerBound]
     }
 
-    subscript(range1: ClosedRange<Int>, range2: ClosedRange<Int>) -> Element {
-        self[range1.lowerBound ..< range1.upperBound + 1, range2.lowerBound ..< range2.upperBound + 1]
+    subscript(range1: UnboundedRange, range2: UnboundedRange) -> Element {
+        self[0 ..< sum.n1 - 1, 0 ..< sum.n2 - 1]
+    }
+
+    subscript<R1>(range1: R1, range2: UnboundedRange) -> Element where R1: RangeExpression, R1.Bound == Int {
+        self[range1.relative(to: 0 ..< sum.n1 - 1), 0 ..< sum.n2 - 1]
+    }
+
+    subscript<R2>(range1: UnboundedRange, range2: R2) -> Element where R2: RangeExpression, R2.Bound == Int {
+        self[0 ..< sum.n1 - 1, range2.relative(to: 0 ..< sum.n2 - 1)]
+    }
+
+    subscript<R1, R2>(range1: R1, range2: R2) -> Element where R1: RangeExpression, R2: RangeExpression, R1.Bound == Int, R2.Bound == Int {
+        self[range1.relative(to: 0 ..< sum.n1 - 1), range2.relative(to: 0 ..< sum.n2 - 1)]
     }
 }
 
@@ -47,6 +59,11 @@ func testStaticRangeSum2D() {
     assert(sum[1 ... 1, 1 ... 2] == 5 + 6)
     assert(sum[1 ... 2, 1 ... 2] == 5 + 6 + 8 + 9)
     assert(sum[2 ... 2, 2 ... 2] == 9)
+
+    assert(sum[2 ... 2, ...] == 7 + 8 + 9)
+    assert(sum[..., 2 ... 2] == 3 + 6 + 9)
+
+    assert(sum[..., ...] == 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9)
 }
 
 testStaticRangeSum2D()

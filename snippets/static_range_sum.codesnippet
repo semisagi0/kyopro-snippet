@@ -36,20 +36,8 @@
         prefixSum[range.upperBound] - prefixSum[range.lowerBound]
     }
 
-    subscript(range: ClosedRange&lt;Int&gt;) -&gt; Element {
-        prefixSum[range.upperBound + 1] - prefixSum[range.lowerBound]
-    }
-
-    subscript(range: PartialRangeFrom&lt;Int&gt;) -&gt; Element {
-        prefixSum.last! - prefixSum[range.lowerBound]
-    }
-
-    subscript(range: PartialRangeUpTo&lt;Int&gt;) -&gt; Element {
-        prefixSum[range.upperBound]
-    }
-
-    subscript(range: PartialRangeThrough&lt;Int&gt;) -&gt; Element {
-        prefixSum[range.upperBound + 1]
+    subscript&lt;R&gt;(range: R) -&gt; Element where R: RangeExpression, R.Bound == Int {
+        self[range.relative(to: 0 ..&lt; prefixSum.count - 1)]
     }
 }
 
@@ -89,7 +77,8 @@ func testStaticRangeSum() {
     assert(sum[1 ... 4] == 2 + 4 + 8 + 16)
 }
 
-testStaticRangeSum()</string>
+testStaticRangeSum()
+</string>
 	<key>IDECodeSnippetIdentifier</key>
 	<string>CDF4DB1B-5273-4590-A5CF-031DB4204DB7</string>
 	<key>IDECodeSnippetLanguage</key>
