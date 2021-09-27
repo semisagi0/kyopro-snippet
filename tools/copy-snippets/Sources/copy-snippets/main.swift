@@ -96,7 +96,13 @@ func translateToVSCode() throws {
     for snippet in try listSnippets() {
         items[snippet.title] = Item(
             prefix: snippet.completionPrefix,
-            body: snippet.content.split(maxSplits: Int.max, omittingEmptySubsequences: false, whereSeparator: \.isNewline).map(String.init),
+            body: snippet
+                .content
+                .replacingOccurrences(of: "$0", with: "\\$0")
+                .replacingOccurrences(of: "$1", with: "\\$1")
+                .replacingOccurrences(of: "$2", with: "\\$2")
+                .replacingOccurrences(of: "$3", with: "\\$3")
+                .split(maxSplits: Int.max, omittingEmptySubsequences: false, whereSeparator: \.isNewline).map(String.init),
             description: ""
         )
     }
