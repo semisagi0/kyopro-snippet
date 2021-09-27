@@ -299,6 +299,6 @@ class TreapMap&lt;Key, Value&gt;: BinarySearchTree where Key: Comparable {
 	<key>IDECodeSnippetUserSnippet</key>
 	<true/>
 	<key>IDECodeSnippetVersion</key>
-	<integer>0</integer>
+	<integer>2</integer>
 </dict>
 </plist>

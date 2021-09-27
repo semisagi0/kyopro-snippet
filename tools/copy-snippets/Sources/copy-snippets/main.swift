@@ -96,7 +96,7 @@ func translateToVSCode() throws {
     for snippet in try listSnippets() {
         items[snippet.title] = Item(
             prefix: snippet.completionPrefix,
-            body: snippet.content.split(whereSeparator: \.isNewline).map(String.init),
+            body: snippet.content.split(maxSplits: Int.max, omittingEmptySubsequences: false, whereSeparator: \.isNewline).map(String.init),
             description: ""
         )
     }
