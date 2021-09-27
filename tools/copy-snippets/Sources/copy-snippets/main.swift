@@ -120,8 +120,8 @@ func translateToVSCode() throws {
 }
 
 do {
-//    try copySnippets()
-//    try extractSnippets()
+    try copySnippets()
+    try extractSnippets()
     try translateToVSCode()
 } catch {
     print(error.localizedDescription)
