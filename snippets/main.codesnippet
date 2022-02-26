@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>mymain</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>func main() {
+    var scanner = Scanner()
+}
+
+main()
+
+// snippet_id: 8d82878e-4927-4f5a-a7f3-51c9668553a2
+// https://github.com/semisagi0/kyopro-snippet
+struct Scanner {
+    private var elements = [String]()
+    private var index = 0
+    
+    mutating func peek() -&gt; String {
+        while elements.count == index {
+            elements = readLine()!.split(separator: " ").map(\.description)
+            index = 0
+        }
+        return elements[index]
+    }
+    
+    mutating func nextString() -&gt; String {
+        defer {
+            index += 1
+        }
+        return peek()
+    }
+    
+    mutating func nextStrings(count n: Int) -&gt; [String] {
+        return (0 ..&lt; n).map { _ in nextString() }
+    }
+    
+    mutating func nextInt() -&gt; Int {
+        return Int(nextString())!
+    }
+    
+    mutating func nextInts(count n: Int) -&gt; [Int] {
+        return (0 ..&lt; n).map { _ in nextInt() }
+    }
+    
+    mutating func nextPairInts(count n: Int) -&gt; ([Int], [Int]) {
+        var a = [Int]()
+        var b = [Int]()
+        for _ in 0 ..&lt; n {
+            a.append(nextInt())
+            b.append(nextInt())
+        }
+        return (a, b)
+    }
+    
+    mutating func nextDouble() -&gt; Double {
+        return Double(nextString())!
+    }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>8C466001-B94F-4BC3-BB77-2E092B47743F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string></string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Main</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
